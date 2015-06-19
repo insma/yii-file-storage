@@ -1,0 +1,38 @@
+{
+  "name": "insma/yii2-file-storage",
+  "description": "File storage extension for Yii2 Framework.",
+  "keywords": [
+    "yii2",
+    "extension",
+    "file",
+    "storage",
+    "local storage",
+    "database storage",
+    "web storage"
+  ],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/insma/yii2-file-storage/issues?state=open",
+    "wiki": "https://github.com/insma/yii2-file-storage/wiki",
+    "source": "https://github.com/insma/yii2-file-storage"
+  },
+  "authors": [
+    {
+      "name": "Insma Software",
+      "email": "m.klemarczyk+insma@live.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.2.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "insma\\storage\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "yiisoft/yii2": "*"
+  }
+}
