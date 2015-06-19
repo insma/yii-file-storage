@@ -11,6 +11,7 @@ namespace insma\storage\controllers;
 use Yii;
 use insma\storage\models\StorageItem;
 use insma\storage\models\ImageUploadModel;
+use insma\storage\actions\ImageManagerJsonAction;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use yii\filters\ContentNegotiator;
@@ -38,6 +39,13 @@ class ImageController extends \yii\web\Controller
                     'application/json' => Response::FORMAT_JSON
                 ],
             ]
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'json-index' => ImageManagerJsonAction::className(),
         ];
     }
 
