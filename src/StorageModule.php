@@ -37,6 +37,11 @@ class StorageModule extends \yii\base\Module
     /**
      * @var array|null
      */
+    public $imageAllowedExtensions = ['jpg', 'png', 'gif', 'bmp', 'svg'];
+
+    /**
+     * @var array|null
+     */
     public $fileAllowedExtensions = null;
 
     /**
