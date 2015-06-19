@@ -9,6 +9,7 @@
 namespace insma\storage\controllers;
 
 use Yii;
+use insma\storage\models\StorageItem;
 use insma\storage\models\FileUploadModel;
 use yii\web\Response;
 use yii\filters\AccessControl;
@@ -21,6 +22,7 @@ use yii\filters\ContentNegotiator;
  */
 class FileController extends \yii\web\Controller
 {
+
     public $enableCsrfValidation = false;
 
     /**
@@ -54,5 +56,35 @@ class FileController extends \yii\web\Controller
 		} else {
 			return ['error' => 'Unable to save file'];
 		}
+    }
+
+	public function actionView($id){
+		$model = $this->findModel($id);
+		$filePath = Yii::$app->controller->module->getFilePath($model->file_path);
+		if(is_file($filePath)){
+			$handle = fopen($filePath, "r");
+			$contents = fread($handle, filesize($filePath));
+			fclose($handle);
+			$this->layout = false;
+			Yii::$app->response->format = Response::FORMAT_RAW;
+			return $contents;
+		}
+		return null;
+	}
+
+    /**
+     * Finds the StorageItem model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return StorageItem the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = StorageItem::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }
