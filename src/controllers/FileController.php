@@ -11,6 +11,7 @@ namespace insma\storage\controllers;
 use Yii;
 use insma\storage\models\StorageItem;
 use insma\storage\models\FileUploadModel;
+use insma\storage\actions\FileManagerJsonAction;
 use yii\web\Response;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -43,6 +44,16 @@ class FileController extends \yii\web\Controller
                     'application/json' => Response::FORMAT_JSON
                 ],
             ]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return [
+            'json-index' => FileManagerJsonAction::className(),
         ];
     }
 
